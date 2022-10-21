@@ -24,19 +24,29 @@ const ListPage = () => {
 
     ]
 
-    const callApiToSearch = async (type) => {
-        console.log(type)
+    const ApiCall = async (url) => {
+        return await fetch(url).then(response => response.json())
+    }
+
+    const callApiToSearch = async(type) => {
         setIsLoading(true)
-        let response = []
-        if (type === 'name') {
-            response = await fetch(`baseURL/skill-search/api/v1/admin/name/${name}`)
-        } else if (type === 'associate') {
-            response = await fetch(`baseURL/skill-search/api/v1/admin/associatedId/${associateId}`)
-        } else {
-            response = await fetch(`baseURL/skill-search/api/v1/admin/skill/${skill}`)
+        try {
+            const baseUrl = 'http://44.201.90.180:8010'
+            let data = []
+            if (type === 'name') {
+                data = await ApiCall(`${baseUrl}/skill-search/api/v1/admin/name/${name}`)
+
+            } else if (type === 'associate') {
+                data = await ApiCall(`${baseUrl}/skill-search/api/v1/admin/associateId/${associateId}`)
+
+            } else {
+                data = await ApiCall(`${baseUrl}/skill-search/api/v1/admin/skill/${skill}`)
+            }
+            setIsLoading(false)
+            setApiResponse(data)
+        } catch (err) {
+            setIsLoading(false)
         }
-        setIsLoading(false)
-        setApiResponse(response)
     }
 
     return (
@@ -87,7 +97,7 @@ const ListPage = () => {
                                         Id
                                     </th>
                                     <td>
-                                        {data.id}
+                                        {data.empId}
                                     </td>
                                 </tr>
                                 <tr>
