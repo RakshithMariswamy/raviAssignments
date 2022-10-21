@@ -12,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/listView" element={<List />}> </Route>
+          <Route path="/health" element={<h3>Hey There!!! The App is Healthy</h3>}> </Route>
         </Routes>
       </BrowserRouter>
 
