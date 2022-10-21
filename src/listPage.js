@@ -21,7 +21,6 @@ const ListPage = () => {
     { key: "DOCKER", Value: "DOCKER" },
     { key: "JENKINS", Value: "JENKINS" },
     { key: "AWS", Value: "AWS" }
-
     ]
 
     const ApiCall = async (url) => {
